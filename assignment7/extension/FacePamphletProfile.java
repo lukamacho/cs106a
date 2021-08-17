@@ -1,0 +1,156 @@
+
+/*
+ * File: FacePamphletProfile.java
+ * ------------------------------
+ * This class keeps track of all the information for one profile
+ * in the FacePamphlet social network.  Each profile contains a
+ * name, an image (which may not always be set), a status (what 
+ * the person is currently doing, which may not always be set),
+ * and a list of friends.
+ */
+
+import acm.graphics.*;
+import java.util.*;
+
+public class FacePamphletProfile implements FacePamphletConstants {
+	private GImage picture;
+	private String profileName;
+	private String status;
+	private String statusi;
+	private String friend;
+	private String gender;
+	private ArrayList<String> fri = new ArrayList<String>();
+	private ArrayList<String> sib = new ArrayList<String>();
+
+	/**
+	 * Constructor This method takes care of any initialization needed for the
+	 * profile.
+	 */
+	public FacePamphletProfile(String name) {
+
+		profileName = name;
+	}
+
+	/** This method returns the name associated with the profile. */
+	public String getName() {
+		return profileName;
+	}
+
+	/**
+	 * This method returns the image associated with the profile. If there is no
+	 * image associated with the profile, the method returns null.
+	 */
+	public GImage getImage() {
+
+		return picture;
+	}
+
+	/** This method sets the image associated with the profile. */
+	public void setImage(GImage image) {
+		picture = image;
+	}
+
+	/**
+	 * This method returns the status associated with the profile. If there is no
+	 * status associated with the profile, the method returns the empty string ("").
+	 */
+	public String getStatus() {
+
+		return statusi;
+	}
+
+	/** This method sets the status associated with the profile. */
+	public void setStatus(String status) {
+		statusi = status;
+	}
+
+	/**
+	 * This method adds the named friend to this profile's list of friends. It
+	 * returns true if the friend's name was not already in the list of friends for
+	 * this profile (and the name is added to the list). The method returns false if
+	 * the given friend name was already in the list of friends for this profile (in
+	 * which case, the given friend name is not added to the list of friends a
+	 * second time.)
+	 */
+	public boolean addFriend(String friend) {
+		boolean q=false;
+		if (!fri.contains(friend)) {
+			fri.add(friend);
+			q=true;
+		}
+		return q;
+	}
+
+	/**
+	 * This method removes the named friend from this profile's list of friends. It
+	 * returns true if the friend's name was in the list of friends for this profile
+	 * (and the name was removed from the list). The method returns false if the
+	 * given friend name was not in the list of friends for this profile (in which
+	 * case, the given friend name could not be removed.)
+	 */
+	public boolean removeFriend(String friend) {
+		boolean q=false;
+		if(addFriend(friend)==false) {
+			q=true;
+			fri.remove(friend);
+		}
+		return q;
+	}
+	/**
+	 * This method  adds the names sibling to this profiles list of siblings.
+	 */
+	public boolean addSibling(String sibling) {
+		boolean q= false;
+		if(!(sib.contains(sibling))) {
+			q=true;
+			sib.add(sibling);
+		}
+		return q;
+	}
+	
+	/**
+	 * This method returns an iterator over the list of friends associated with the
+	 * profile.
+	 */
+	public Iterator<String> getFriends() {
+		
+		return fri.iterator();
+	}
+	/**
+	 * This method returns an iterator over the list of siblings associated with the profile.
+	 */
+	public Iterator<String> getSiblings(){
+		return sib.iterator();
+	}
+
+	/**
+	 * This method returns a string representation of the profile. This string is of
+	 * the form: "name (status): list of friends", where name and status are set
+	 * accordingly and the list of friends is a comma separated list of the names of
+	 * all of the friends in this profile.
+	 * For example, in a profile with name "Alice" whose status is "coding" and who
+	 * has friends Don, Chelsea, and Bob, this method would return the string:
+	 * "Alice (coding): Don, Chelsea, Bob"
+	 */
+	public String toString() {
+
+		return profileName + getStatus();
+	}
+	/**
+	 * This method removes the named sibling to this profiles list of siblings.
+	 */
+
+	public void removeSibling(String text) {
+		if(addSibling(text)==false) {
+			sib.remove(text);
+		}		
+	}
+	public void  setgender(String gend) {
+		gender= gend;
+	}
+	public String getGender() {
+		return gender;
+	}
+
+	
+}
